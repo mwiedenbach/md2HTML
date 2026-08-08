@@ -63,11 +63,6 @@ function main(): void {
     const outputDirname: string = path.dirname(configContent?.outFile ?? outputPath);
     fs.mkdirSync(outputDirname, { recursive: true });
 
-    console.log(`Debug: ${outputDirname}`);  
-    console.log(`Debug: ${outputPath}`);
-    console.log(`Debug: ${configContent?.outFile}`);  
-
-    // const outputFile: string = path.join(outputDirname, outputPath ?? outputPath);
     const outputFile: string = configContent?.outFile ?? outputPath;
 
     if (!fs.existsSync(inputFile)) {
