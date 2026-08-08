@@ -63,9 +63,12 @@ function main(): void {
     const outputDirname: string = path.dirname(configContent?.outFile ?? outputPath);
     fs.mkdirSync(outputDirname, { recursive: true });
 
-    const outputFile: string = path.join(outputDirname, outputPath ?? outputPath);
+    const outputFile: string = configContent?.outFile ?? outputPath;
 
-    console.log(outputFile);
+    if (!fs.existsSync(inputFile)) {
+        console.error(`md2html ${inputFile}: Not found!`);
+        process.exit(1);
+    }
 
     const markdown = fs.readFileSync(inputFile);
     const html = convertMarkdownToHtml(markdown);
@@ -78,3 +81,4 @@ function main(): void {
 }
 
 main();
+
